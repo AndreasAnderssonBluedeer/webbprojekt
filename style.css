@@ -1,22 +1,59 @@
+
+#search{
+    width: 80%;
+}
+#genre{
+ width: 80%;
+}
+#year{
+ width: 80%;
+}
+#rating{
+ width: 80%;
+}
+#search_btn{
+width:8%;
+}
+
+.header_logo {
+     background: url('webbg.jpg')
+       no-repeat center center fixed; 
+ 
+  background-size: cover;
+    margin-top: -20px;
+  width: 100%;
+    position: fixed; 
+}
+ .test {
+        width: 100%;
+}
+.test2 {
+        height: 140px;
+        width: 100%;
+}
+#smask{
+    width: 150px;
+    color: aquamarine;
+}
+h2{
+    color: aqua;
+}
 .header {
-   width: 100%;
+  width: 100%;
     position: fixed;
   background-color: #333333;
-    
-  
 }
 
 .container {
-  max-width: 940px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 10px;
 }
 
 
-.jumbotron {
-
-
-     background: url('http://s3.amazonaws.com/codecademy-content/projects/broadway/bg.jpg')
+body {
+    margin-left: -2px;
+     background: url('backgroundisch.png')
        no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -26,7 +63,7 @@
 }
 
 .nav {
-    
+     
   margin: 0;
   padding: 20px 0;
 }
@@ -134,7 +171,4 @@
     color:#333333;
     border: 2px solid #333333;
   }
-    .test {
-        width: 100%;
-        height: 30%;
 }
