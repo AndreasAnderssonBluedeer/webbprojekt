@@ -1,192 +1,110 @@
-
-
-
-#search{
-    width: 80%;
-}
-#genre{
- width: 80%;
-}
-#year{
- width: 80%;
-}
-#rating{
- width: 80%;
-}
-#search_btn{
-width:8%;
-}
-
-.searchpage{
-  padding-top: 10px;
-  background-color: black;
-  
-  margin-left: 200px;
-  margin-right:200px;
-  color:white;
-  text-align: center;
-  height: 1500px;
-}
-
-.header_logo {
-     background: url('webbg.jpg')
-       no-repeat center center fixed; 
-  width:79%;
-  background-size: cover;
-    margin-top: -10px;
-    
-    position: fixed; 
-    top:0;
-    margin-left: 200px;
-  
-}
- .test {
-        
-}
-.test2 {
-        height: 110px;
-      
-}
-
-h2{
-    color: aqua;
-}
-.header {
-  
-   
-  background-color: #333333;
-}
-
-.container {
-  
-  margin: 0 auto;
-  padding: 0 10px;
-}
-
-
-body {
-  
-     background: url('backgroundisch.png')
-       no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
- 
-}
-
-.nav {
-     
-  margin: 0;
-  padding: 15px 0;
-}
-
-.nav li{
- 
-  display: inline;
-  
-}
-.nav li a{
-    margin: 20px 20px 20px 20px;
-   text-decoration:none;
-  color: white;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  font-size: 12px; 
-}
-
-.main {
-  position: relative;
-  top: 180px;
-  text-align: center;
-}
-
-.main h1 {
-  color: #333;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  font-size: 70px;
-  margin-top: 0;
-  margin-bottom: 80px;
-  text-transform: uppercase;
-}
-
-.btn-main {
-  background-color: #333;
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 1.3px;
-  padding: 16px 40px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.supporting {
-  padding-top: 80px;
-  padding-bottom: 100px;
-}
-
-.supporting .col {
-  float: left;
-  width: 33%;
-  font-family: 'Raleway', sans-serif;
-  text-align: center;
-}
-
-.supporting img {
-  height: 32px;
-}
-
-.supporting h2 {
-  font-weight: 600;
-  font-size: 23px;
-  text-transform: uppercase;
-}
-
-.supporting p {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0 50px;
-  margin-bottom: 40px;
-}
-
-.clearfix {
-  clear: both;
-}
-
-.footer {
-  margin-left: 200px;
-  margin-right:200px;
-  background-color: #333;
-  color: #fff;
-  padding: 15px 0;
-  
-  bottom: : 0;
-  
-    
-}
-
-.footer p {
-  font-family: 'Raleway', sans-serif;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-@media (max-width: 500px) {
-  .main h1 {
-    font-size: 50px;
-    padding: 0 40px;
-  }
-
-  .supporting .col {
+header{
+	 z-index: 100;
+	color:green;
+	 display: block;
+	 margin-left: auto;
+    margin-right: auto;
     width: 100%;
-  }
-  .btn-main {
-    background-color:white;
-    color:#333333;
-    border: 2px solid #333333;
-  }
+    position: fixed;
+    top: 0;
+    bottom: auto;
+}
+
+.headlogo{
+	margin-left: auto;
+    margin-right: auto;
+     display: block;
+}
+
+.nav{
+	text-align: center;
+	border: 1px solid gray;
+	
+	background-color:rgba(0,0,0,0.6);
+}
+.navcontainer{
+	margin-left: auto;
+    margin-right: auto;
+	display: block;
+	max-width: 940px;
+}
+body{
+	background-image: url("cinema.jpg");
+	background-size: 100% 100%;
+}
+
+
+img{
+	margin-left: auto;
+    margin-right: auto;
+     display: block;
+}
+.btn-primary {
+
+	background-color:rgba(0,0,0,0.0);
+	border: 0px solid black;
+}
+.main{
+
+	background-color:rgba(0,0,0,0.7);
+	text-align: center;
+	margin-top: 170px;
+	margin-bottom: 10px;
+	height: 1000px;
+	
+	
+}
+.mainfield{
+	max-width: 940px;
+	margin-left: auto;
+    margin-right: auto;
+	
+	
+	padding-top: 10px;
+	padding-bottom: 20px;
+	color:white;
+	
+	height: 800px;
+}
+#results{
+	padding:10px;
+	border-radius: 2px;
+	background-color:rgba(0,0,0,0.2);
+	height: 800px;
+}
+.result_container{
+	margin-bottom: 5px;
+	padding:10px;
+	
+	height: 150px;
+	border: 1px solid gray;
+}
+.result_img{
+
+	height: 120px;
+	background: url(poster.jpg);
+ 	background-size: 80px 120px;
+    background-repeat: no-repeat;
+	
+}
+.result_info{
+
+	text-align: left;
+}
+
+
+#sorting{
+	padding:10px;
+	border-radius:2px;
+	background-color:rgba(50,50,50,0.2);
+	height: 800px;
+}
+footer{
+	text-align: center;
+	border-top: 1px solid gray; 
+	border-bottom: 1px solid gray; 
+	padding: 10px 20px 10px 20px;
+	background-color: black;
+	color: gray;
+
 }
