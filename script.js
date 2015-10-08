@@ -51,3 +51,7 @@ $(function fdsd(){
 
 });
 					
+
+$( document ).ready(function() {
+    				
+});
