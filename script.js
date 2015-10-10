@@ -77,21 +77,29 @@ $( document ).ready(function() {
 		$d.className = d.className + " otherclass";
 		$( "#results" ).append( $d);*/
 
-		for (var i = 0 ; i< 4; i++) {
+		for (var i = 0 ; i< 5; i++) {
 			
-		
+		if(i==0){
+			
+			document.getElementById("poster_"+i).style.background = "url(pika.png)";
 
-		var div = document.getElementById('result_container'),
+			document.getElementById("title_"+i).innerHTML = "New text!"+i;
+			document.getElementById("plot_"+i).innerHTML = "Blaa bla ab la abl al la bla l al la l la lla"+i;
+
+
+		}else{
+
+		var div = document.getElementById('result_container_0'),
     	clone = div.cloneNode(true); // true means clone all childNodes and all event handlers
 		clone.id = "result_container_"+i;
 
 		document.getElementById("results").appendChild(clone);
-		document.getElementById("result_container_"+i).style.border = "2px solid red";
+		
 		//Första barnet från ett element
 		var elem = document.getElementById('result_container_'+i);
 		var child = elem.children[0].children[0];
 		child.id= "poster_"+i;
-		document.getElementById("poster_"+i).style.background = "url(pika.png)";
+		document.getElementById("poster_"+i).style.background = "url(poster.jpg)";
 
 		
 		var title = elem.children[1].children[0].children[0];
@@ -101,7 +109,7 @@ $( document ).ready(function() {
 		var plot = elem.children[1].children[0].children[1];
 		plot.id= "plot_"+i;
 		document.getElementById("plot_"+i).innerHTML = "Blaa bla ab la abl al la bla l al la l la lla"+i;
-
+		}
 
 		};
 	//	$( ".result_info" ).html( "MOUHAHAH" );
