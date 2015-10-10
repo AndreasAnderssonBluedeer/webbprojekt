@@ -80,64 +80,52 @@ $( document ).ready(function() {
 		for (var i = 0 ; i< 5; i++) {
 			
 		if(i==0){
-			
-			document.getElementById("poster_"+i).style.background = "url(pika.png)";
 
-			document.getElementById("title_"+i).innerHTML = "New text!"+i;
-			document.getElementById("plot_"+i).innerHTML = "Blaa bla ab la abl al la bla l al la l la lla"+i;
+			document.getElementById("rc_link_0").href="search.html";
+			document.getElementById("poster_"+i).style.backgroundImage = "url(pika.png)";
+
+			document.getElementById("title_"+i).innerHTML = "The Grey"+i;
+			document.getElementById("plot_"+i).innerHTML = "Mystique helps a bunch of mutants escape a busy"+
+			" Vietnam military base in a cargo plane while being disguised as an army colonel"+
+			" and the moment they leave she turns around and morphs into a blonde chick in front"+
+			" of hundreds of other soldiers and no one notices her. "+i;
 
 
 		}else{
 
-		var div = document.getElementById('result_container_0'),
-    	clone = div.cloneNode(true); // true means clone all childNodes and all event handlers
-		clone.id = "result_container_"+i;
+		var link = document.getElementById('rc_link_0'),
+    	clonelink = link.cloneNode(true); // true means clone all childNodes and all event handlers
+		clonelink.id = "rc_link_"+i;
+		clonelink.href="https://www.google.se/";
 
-		document.getElementById("results").appendChild(clone);
+		document.getElementById("results").appendChild(clonelink);	
+
+		var div = document.getElementById('rc_link_'+i);
+		var clone = div.children[0];
+		clone.id= "result_container_"+i;
+		
 		
 		//Första barnet från ett element
 		var elem = document.getElementById('result_container_'+i);
 		var child = elem.children[0].children[0];
 		child.id= "poster_"+i;
-		document.getElementById("poster_"+i).style.background = "url(poster.jpg)";
+		document.getElementById("poster_"+i).style.backgroundImage = "url(lord2.jpg)";
 
 		
 		var title = elem.children[1].children[0].children[0];
 		title.id= "title_"+i;
-		document.getElementById("title_"+i).innerHTML = "New text!"+i;
+		document.getElementById("title_"+i).innerHTML = "The Grey"+i;
 
 		var plot = elem.children[1].children[0].children[1];
 		plot.id= "plot_"+i;
-		document.getElementById("plot_"+i).innerHTML = "Blaa bla ab la abl al la bla l al la l la lla"+i;
+		document.getElementById("plot_"+i).innerHTML ="Mystique helps a bunch of mutants escape a busy"+
+			" Vietnam military base in a cargo plane while being disguised as an army colonel"+
+			" and the moment they leave she turns around and morphs into a blonde chick in front"+
+			" of hundreds of other soldiers and no one notices her. "+i;	
 		}
 
 		};
-	//	$( ".result_info" ).html( "MOUHAHAH" );
-	//	$test.html( "MOUHAHAH" );
-		
-  		
-
-		//<div class="result_info" id="info">
-		//			 	<h4>The Grey</h4>
-    	//$( ".result_container" ).clone().appendTo( "#results" );
-    	//var $test= document.getElementById("poster");
-    //	var $test= document.getElementById("poster");
-		 	  /*var $newdiv1 = $( "<div id='object1'/>" ),
-		  newdiv2 = document.createElement( "div" ),
-		  existingdiv1 = document.getElementById( "foo" );
-		 
-		$( "body" ).append( $newdiv1, [ newdiv2, existingdiv1 ] );*/
- 
-	//$( "#results" ).append( $test );
-
-
-
-    	/*
-    for (i = 0; i < data.length; i++) {
-      html = '<li id="unicorn_' + i + '">' + data[i]['name'] + '</li>';
-      list.append(html);
-      $('#unicorn_' + i).click(fetchAndUpdateInfo(data[i]['details']));*/
-
+	
 });
 
 

@@ -79,16 +79,20 @@ img{
 	height: 150px;
 	border: 1px solid gray;
 }
+.result_container:hover{
+border: 1px solid white;
+}
 .result_img{
 
 	height: 120px;
-	background: none;
- 	background-size: 80px 120px;
+	width:80px;
+	background-image: none;
+ 	  background-size: contain;
     background-repeat: no-repeat;
 	
 }
 .result_info{
-
+	color: #D1D0D0;
 	text-align: left;
 }
 
@@ -107,4 +111,10 @@ footer{
 	background-color: black;
 	color: gray;
 
+}
+.rc_link{
+	color:gray;
+}
+.rc_link:hover{
+	color:white;
 }
