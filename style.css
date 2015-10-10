@@ -77,12 +77,12 @@ img{
 	padding:10px;
 	
 	height: 150px;
-	border: 1px solid gray;
+	border: none;
 }
 .result_img{
 
 	height: 120px;
-	background: url(poster.jpg);
+	background: none;
  	background-size: 80px 120px;
     background-repeat: no-repeat;
 	

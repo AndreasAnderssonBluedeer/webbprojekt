@@ -59,7 +59,7 @@ $( document ).ready(function() {
     	
     	
 
-    	var $test= $( ".result_container" ).clone();
+    	/*var $test= $( ".result_container" ).clone();
     	var $test30= $( ".result_container" ).clone();
     	$('#poster').css('background','url(pika.png)');
     	var $newdiv1 = $( "<p>"+$test.text +"</p>" );
@@ -70,9 +70,40 @@ $( document ).ready(function() {
     	var $fun = $('#poster').clone().prop('id', 'fun');
     	$('#fun').css('background','url(pika.png)');
 
-		$( "#results" ).append( $test,$test30,$newdiv1,$fun );
-		var $title = $( "#info h4" ).attr( "value" );
 		
+		var $title = $( "#info h4" ).attr( "value" );
+
+		var $d = document.getElementById("result_container");
+		$d.className = d.className + " otherclass";
+		$( "#results" ).append( $d);*/
+
+		for (var i = 0 ; i< 4; i++) {
+			
+		
+
+		var div = document.getElementById('result_container'),
+    	clone = div.cloneNode(true); // true means clone all childNodes and all event handlers
+		clone.id = "result_container_"+i;
+
+		document.getElementById("results").appendChild(clone);
+		document.getElementById("result_container_"+i).style.border = "2px solid red";
+		//Första barnet från ett element
+		var elem = document.getElementById('result_container_'+i);
+		var child = elem.children[0].children[0];
+		child.id= "poster_"+i;
+		document.getElementById("poster_"+i).style.background = "url(pika.png)";
+
+		
+		var title = elem.children[1].children[0].children[0];
+		title.id= "title_"+i;
+		document.getElementById("title_"+i).innerHTML = "New text!"+i;
+
+		var plot = elem.children[1].children[0].children[1];
+		plot.id= "plot_"+i;
+		document.getElementById("plot_"+i).innerHTML = "Blaa bla ab la abl al la bla l al la l la lla"+i;
+
+
+		};
 	//	$( ".result_info" ).html( "MOUHAHAH" );
 	//	$test.html( "MOUHAHAH" );
 		
