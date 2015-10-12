@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	
+	<head>
+		<link rel="icon" type="image/gif" href="pika.png" />
+  		<title>Trailer</title>
+ 		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  									<!-- BOOTSTRAP-->
+ 		 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<script src="script.js"></script>
+
+  		  <link rel='stylesheet' href='style.css'/> 
+    </head>
+	
+	<body>
+
+	<header>
+
+		<div class="headlogo">
+			<img src="header_mall.png" alt="Logo">
+		</div>
+
+		<div class="nav">
+			<div class="navcontainer">
+					<div class="col-xs-4">
+					  <input name:"title" type="text" class="form-control" id="title" placeholder="Title..">
+					</div>
+					
+
+					
+
+					<div class="col-xs-2">
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" id="test2" type="button" data-toggle="dropdown">Genre
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu" id="test">
+					    <li><a href="#">Drama</a></li>
+					    <li><a href="#">Action</a></li>
+					    <li><a href="#">Adventure</a></li>
+					  </ul>
+					
+					
+					</div>
+					</div>
+
+
+					<div class="col-xs-2">
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" id="test4" type="button" data-toggle="dropdown">Year
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu" id="test3">
+					    <li><a href="#">70-80</a></li>
+					    <li><a href="#">80-90</a></li>
+					    <li><a href="#">90-00</a></li>
+					  </ul>
+					 
+
+					</div>
+					</div>
+				
+					
+					<div class="col-xs-2">
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" id="test6" type="button" data-toggle="dropdown">Rating
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu" id="test5">
+					    <li><a href="#">8</a></li>
+					    <li><a href="#">9</a></li>
+					    <li><a href="#">10</a></li>
+					  </ul>
+					 
+
+					</div>
+					</div>
+
+					<div class="col-xs-2">
+						
+							
+
+					<button type="button" class="btn btn-primary"
+					onclick="myFunction()">
+					Search!
+					
+					</button>
+					</div>
+					
+					
+			</div>	
+		</div>
+	</header>
+
+
+	<div class="main">
+
+	<div class="mainfield">
+<div>
+<video id="sampleMovie" width="640" height="360" preload controls>
+	<source src="HTML5Sample_H264.mov" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+	<source src="HTML5Sample_Ogg.ogv" type='video/ogg; codecs="theora, vorbis"' />
+	<source src="HTML5Sample_WebM.webm" type='video/webm; codecs="vp8, vorbis"' />
+	<object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+		<param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+		<param name="allowFullScreen" value="true" />
+		<param name="wmode" value="transparent" />
+		<param name="flashvars" value='config={"clip":{"url":"HTML5Sample_flv.flv","autoPlay":false,"autoBuffering":true}}' />
+	</object>
+</video>
+</div>
+
+<p>
+<div class="well well-lg">
+    <div class = "movie-info">
+        <div id = "movie-title"><strong>Movie Title</strong><br>
+        </div>
+        <div id = "description">
+            Movie Description
+        </div>
+        <p>
+        <div id = "Regissör">
+            <strong>Regissör</strong>
+        </div></p>
+        <p></p>
+        
+        
+        
+    
+    </div>
+    </div>
+</p>
+
+        
+				</a>
+        </div>
+        </div>
+	</div>
+
+	<footer>
+		<p>Footer</p>
+	</footer>
+	 </body>
+</html>
