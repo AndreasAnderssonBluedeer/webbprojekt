@@ -1,7 +1,4 @@
 
-
-
-
 function myFunction() {
 		
 		var rate= $("#test6").val();
@@ -13,12 +10,10 @@ function myFunction() {
 		$("#test2").val("");
 		$("#test4").val("");
 		$("#test6").val("");
-
 		$("#test2").text("Genre");
 		$("#test4").text("Year");
 		$("#test6").text("Rating");
 		$("#title").val("");
-
 	}
 						 
 $(function fd(){
@@ -28,13 +23,11 @@ $(function fd(){
 	$("#test2").text($(this).text());
 	$("#test2").val($(this).text());
 	});
-
 });
 
 $(function fds(){
 
-	 $("#test3 a").click(function fds(){
-
+	$("#test3 a").click(function fds(){
 	$("#test4").text($(this).text());
 	$("#test4").val($(this).text());
 	});
@@ -44,13 +37,9 @@ $(function fds(){
 $(function fdsd(){
 
 	$("#test5 a").click(function fdsd(){
-
 	$("#test6").text($(this).text());
 	$("#test6").val($(this).text());
-					    
-					     	
 	});
-
 });
 					
 
@@ -60,13 +49,11 @@ $( document ).ready(function() {
     	
 
 
-		for (var i = 0 ; i< 5; i++) {
-			
+		for (var i = 0 ; i< 5; i++) {	
 		if(i==0){
 
 			document.getElementById("rc_link_0").href="search.html";
 			document.getElementById("poster_"+i).style.backgroundImage = "url(pika.png)";
-
 			document.getElementById("title_"+i).innerHTML = "The Grey"+i;
 			document.getElementById("plot_"+i).innerHTML = "Mystique helps a bunch of mutants escape a busy"+
 			" Vietnam military base in a cargo plane while being disguised as an army colonel"+
@@ -80,9 +67,7 @@ $( document ).ready(function() {
     	clonelink = link.cloneNode(true); // true means clone all childNodes and all event handlers
 		clonelink.id = "rc_link_"+i;
 		clonelink.href="https://www.google.se/";
-
 		document.getElementById("results").appendChild(clonelink);	
-
 		var div = document.getElementById('rc_link_'+i);
 		var clone = div.children[0];
 		clone.id= "result_container_"+i;
@@ -98,7 +83,6 @@ $( document ).ready(function() {
 		var title = elem.children[1].children[0].children[0];
 		title.id= "title_"+i;
 		document.getElementById("title_"+i).innerHTML = "The Grey"+i;
-
 		var plot = elem.children[1].children[0].children[1];
 		plot.id= "plot_"+i;
 		document.getElementById("plot_"+i).innerHTML ="Mystique helps a bunch of mutants escape a busy"+
@@ -106,9 +90,7 @@ $( document ).ready(function() {
 			" and the moment they leave she turns around and morphs into a blonde chick in front"+
 			" of hundreds of other soldiers and no one notices her. "+i;	
 		}
-
 		};
-	
 });
 
 

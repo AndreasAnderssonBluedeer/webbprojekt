@@ -12,6 +12,7 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   		<script src="script.js"></script>
+  		<script src="path/to/the/flowplayer-3.2.13.min.js"></script>
 
   		  <link rel='stylesheet' href='style.css'/> 
     </head>
@@ -97,8 +98,9 @@
 	<div class="main">
 
 	<div class="mainfield">
+
 <div>
-<video id="sampleMovie" width="640" height="360" preload controls>
+<video id="sampleMovie" src = "https://youtu.be/b-cUfUxML7w" width="640" height="360" preload controls>
 	<source src="HTML5Sample_H264.mov" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
 	<source src="HTML5Sample_Ogg.ogv" type='video/ogg; codecs="theora, vorbis"' />
 	<source src="HTML5Sample_WebM.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -112,24 +114,96 @@
 </div>
 
 <p>
+<div class = "movie-info"> 
 <div class="well well-lg">
-    <div class = "movie-info">
-        <div id = "movie-title"><strong>Movie Title</strong><br>
-        </div>
-        <div id = "description">
-            Movie Description
-        </div>
-        <p>
-        <div id = "Regissör">
-            <strong>Regissör</strong>
-        </div></p>
-        <p></p>
-        
-        
-        
-    
+
+        <h5 id = "movie-title">Movie Title 
+        </h5> 	
+        <h6 id = "plot">Vad filmen handlar om
+        </h6>
+
+        <h5 id = "genre">Genre 
+        </h5> 	
+        <h6 id = "genre-name">Genre
+        </h6>
+
+
+        <h5 id = "language">Language 
+        </h5> 	
+        <h6 id = "language-name">Language
+        </h6>
+
+
+        <h5 id = "movie-series">Movie 
+        </h5> 	
+        <h6 id = "is-a-movie">True/false
+        </h6>
+
+
+        <h5 id = "rating">IMDB-Rating 
+        </h5> 	
+        <h6 id = "rating-number">Rating
+        </h6>
+
+
+        <h5 id = "votes">IMDB-Votes 
+        </h5> 	
+        <h6 id = "votes-number">Votes
+        </h6>
+
+
+        <h5 id = "imdb-id">IMDB-ID 
+        </h5> 	
+        <h6 id = "imdb-id-name">IMDB-ID
+        </h6>
+
+        <h5 id = "released">Released 
+        </h5> 	
+        <h6 id = "released-date">År som filmen släpptes
+        </h6>
+     	</div>
+
+<div class="well well-lg2">
+        <h5 id = "director">Director 
+        </h5> 	
+        <h6 id = "director-name">Herr Gubbstrutt
+        </h6>
+
+        <h5 id = "writer">Writer 
+        </h5> 	
+        <h6 id = "writer-name">Konstapel Snarf
+        </h6>
+
+        <h5 id = "actors">Actors 
+        </h5> 	
+        <h6 id = "actor-name">Medverkande skådespelare
+        </h6>
+
+</div>
+<div class="well well-lg3">
+        <h5 id = "runtime">Runtime 
+        </h5> 	
+        <h6 id = "runtime-length">How long is the movie
+        </h6>
+
+        <h5 id = "rated-pg">Rated 
+        </h5> 	
+        <h6 id = "rated-pg-name">Rated
+        </h6>
+
+        <h5 id = "country">Country 
+        </h5> 	
+        <h6 id = "country-name">Country
+        </h6>
+
+        <h5 id = "awards">Awards 
+        </h5> 	
+        <h6 id = "award-name">Awards
+        </h6>
+
     </div>
     </div>
+</div>
 </p>
 
         
