@@ -51,7 +51,7 @@ public class Main {
 		     
 		
 		     
-		   System.out.println("Title: "+movie.getMovie()+", Year: "+movie.getYear());  
+		   System.out.println("Title: "+movie.getMovie()+", Year: "+movie.getYear()+",: "+movie.getActors());  
 		  
 		 
 		     
