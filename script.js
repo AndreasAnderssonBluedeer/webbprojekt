@@ -59,23 +59,6 @@ $( document ).ready(function() {
     	
     	
 
-    	/*var $test= $( ".result_container" ).clone();
-    	var $test30= $( ".result_container" ).clone();
-    	$('#poster').css('background','url(pika.png)');
-    	var $newdiv1 = $( "<p>"+$test.text +"</p>" );
-    //	$('.outer > .inner')
-    	//$demo.css("background", "url(pika.png)");
-    	$test.css("border", "1px solid white");
-
-    	var $fun = $('#poster').clone().prop('id', 'fun');
-    	$('#fun').css('background','url(pika.png)');
-
-		
-		var $title = $( "#info h4" ).attr( "value" );
-
-		var $d = document.getElementById("result_container");
-		$d.className = d.className + " otherclass";
-		$( "#results" ).append( $d);*/
 
 		for (var i = 0 ; i< 5; i++) {
 			
