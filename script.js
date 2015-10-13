@@ -52,11 +52,8 @@ $( document ).ready(function() {
 		for (var i = 0 ; i< 5; i++) {	
 		if(i==0){
 			var headtitle="The Grey"+i;
-			document.getElementById("rc_link_0").href="https://www.google.se/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q="+headtitle;
+			document.getElementById("rc_link_0").href="https://www.google.se/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=";
 			document.getElementById("poster_"+i).style.backgroundImage = "url(pika.png)";
-
-			document.getElementById("title_"+i).innerHTML = "The Grey"+i;
-
 
 			document.getElementById("title_"+i).innerHTML = headtitle;
 
@@ -92,7 +89,7 @@ $( document ).ready(function() {
 		
 		var title = elem.children[1].children[0].children[0];
 		title.id= "title_"+i;
-		document.getElementById("title_"+i).innerHTML = "The Grey"+i;
+		document.getElementById("title_"+i).innerHTML = headtitle;
 		var plot = elem.children[1].children[0].children[1];
 		plot.id= "plot_"+i;
 		document.getElementById("plot_"+i).innerHTML ="Mystique helps a bunch of mutants escape a busy"+
