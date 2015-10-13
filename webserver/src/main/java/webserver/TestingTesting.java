@@ -28,7 +28,7 @@ public class TestingTesting {
 		
 		get("/bye",(req, res) -> "Bye World");
 		
-		get("/hello/:name",(req, res) ->{
+		get("/search/:name", "application/json",(request, res) ->{
 			
 			HttpClient httpclient = null;
 			HttpGet httpGet = null;
@@ -43,7 +43,7 @@ public class TestingTesting {
 			try {
 				// Create the client that will call the API
 				httpclient = HttpClients.createDefault();
-				httpGet = new HttpGet("http://www.omdbapi.com/?t=harry&y=&plot=short&r=json");
+				httpGet = new HttpGet("http://www.omdbapi.com/?t="+request.params(":name")+"&y=&plot=short&r=json");
 
 				// Call the API and verify that all went well
 				response = httpclient.execute(httpGet);
@@ -73,6 +73,7 @@ public class TestingTesting {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	
 			res.status(200);
 			res.type("application/json");
 			gson.toJson(movie);

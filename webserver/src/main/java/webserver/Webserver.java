@@ -40,7 +40,7 @@ public class Webserver {
 		try {
 			// Create the client that will call the API
 			httpclient = HttpClients.createDefault();
-			httpGet = new HttpGet("http://www.omdbapi.com/?t=harry&y=&plot=short&r=json");
+			httpGet = new HttpGet("http://localhost:4567/search/Buffy");
 
 			// Call the API and verify that all went well
 			response = httpclient.execute(httpGet);
@@ -134,7 +134,7 @@ public class Webserver {
 	public static void main(String[] args) throws IOException {
 		Webserver ws=new Webserver();
 		ws.omdb();
-		ws.trailerAPI();
+	//	ws.trailerAPI();
 	}
 		    
 		  
