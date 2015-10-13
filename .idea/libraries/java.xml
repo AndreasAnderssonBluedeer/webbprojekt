@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Testkod Backend/java-backend/src/main/java/java-backend-1.0.0-jar-with-dependencies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Testkod Backend/java-backend/src/main/java/java-backend-1.0.0-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
