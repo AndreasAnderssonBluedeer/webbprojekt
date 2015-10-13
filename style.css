@@ -75,11 +75,11 @@ img{
 	padding-bottom: 20px;
 	color:white;
 	
-<<<<<<< HEAD
+
 	height: 1200px;
-=======
+
 	min-height: 800px;
->>>>>>> a26eb0e3695fecb05f2855ca6c837c0a2722ff35
+
 }
 
 .well-lg{
@@ -143,12 +143,11 @@ border: 1px solid white;
 	background-color:rgba(50,50,50,0.2);
 	height: 800px;
 }
-<<<<<<< HEAD
 
-footer{
-=======
+
+
 #footer{
->>>>>>> a26eb0e3695fecb05f2855ca6c837c0a2722ff35
+
 	text-align: center;
 	border-top: 1px solid gray; 
 	border-bottom: 1px solid gray; 
