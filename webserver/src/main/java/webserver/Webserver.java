@@ -72,7 +72,7 @@ public class Webserver {
 		}
 	}
 
-	public void trailerAPI() {
+	public JSONObject trailerAPI() {
 		
 		HttpClient httpclient = null;
 		HttpGet httpGet = null;
@@ -128,7 +128,7 @@ public class Webserver {
 	        } catch (JSONException je) {
 	            System.out.println(je.toString());
 	        }
-	    
+	    return null;
 	}
 
 	public static void main(String[] args) throws IOException {
