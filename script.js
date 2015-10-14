@@ -1,6 +1,10 @@
 
 function myFunction() {
-		
+
+		$.getJSON('http://localhost:4567/search/harry', function(jd) {
+		console.log(jd);	
+		})
+
 		var rate= $("#test6").val();
 		var year= $("#test4").val();
 		var genre= $("#test2").val();
@@ -14,8 +18,19 @@ function myFunction() {
 		$("#test4").text("Year");
 		$("#test6").text("Rating");
 		$("#title").val("");
+
+		return function() {  
+   			$.ajax({
+   			method: 'GET',
+    		url: 'http://www.omdbapi.com/?t=harry&y=&plot=short&r=json',
+      		headers: {"Accept": "application/json"}
+    })
+    .done(function (data) {
+    	$console.log(data);
+
+					});
 	}
-						 
+}		 
 $(function fd(){
 
 	$("#test a").click(function fd(){
