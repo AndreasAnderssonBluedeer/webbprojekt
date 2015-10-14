@@ -54,7 +54,7 @@ public class RecieveResponeTest {
 						Movie movie = gson.fromJson(reader, Movie.class);
 
 						System.out.println(
-								"Title: " + movie.getMovie() + ", Year: " + movie.getYear() + ",: " + movie.getActors());
+								"Title: " + movie.getTitle() + ", Year: " + movie.getYear() + ",: " + movie.getActors());
 
 					} catch (Exception e) {
 						// Something didn't went well. No calls for us.
@@ -103,7 +103,7 @@ public class RecieveResponeTest {
 						for(int i=0;i<3;i++){
 							System.out.println(
 									
-									"Title: " + movieArray[i].getMovie() + ", Year: " + movieArray[i].getYear() + ",: " + movieArray[i].getActors());
+									"Title: " + movieArray[i].getTitle() + ", Year: " + movieArray[i].getYear() + ",: " + movieArray[i].getActors());
 							}
 					} catch (Exception e) {
 						// Something didn't went well. No calls for us.

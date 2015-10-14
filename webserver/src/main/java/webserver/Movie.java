@@ -28,10 +28,10 @@ public class Movie {
 		
 	}
 	//Movie
-	public void setMovie(String Title){
+	public void setTitle(String Title){
 		this.Title=Title;
 	}
-	public String getMovie(){
+	public String getTitle(){
 		return this.Title;
 	}
 	//Year
@@ -156,8 +156,8 @@ public class Movie {
 		this.imdbRating = imdbRating;
 	}
 
-	public String getimdbRating() {
-		return this.imdbRating;
+	public Double getimdbRating() {
+		return Double.parseDouble(this.imdbRating);
 	}
 
 	// imdbVotes
