@@ -39,6 +39,8 @@ public class ResultSorter {
 	public void sortByLength(){
 		
 	}
+	
+	//Filter results from title and year after Rating and Genre.
 	public String filterSearch(String apiRes,String genre,String rating){
 		Double rate;
 		
@@ -72,8 +74,6 @@ public class ResultSorter {
 			newArray[i]=movieList.get(i);
 		}
 		newMovieArray.setSearch(newArray);
-		
-		
 		
 		return gson.toJson(newMovieArray);
 	}

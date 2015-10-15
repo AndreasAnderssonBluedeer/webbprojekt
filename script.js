@@ -1,7 +1,7 @@
 
 function myFunction() {
 
-		$.getJSON('http://localhost:4567/search/harry', function(jd) {
+		$.getJSON('http://localhost:4567/info/harry', function(jd) {
 		console.log(jd);	
 		})
 

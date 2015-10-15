@@ -133,8 +133,10 @@ public class RecieveResponeTest {
 
 		public static void main(String[] args) throws IOException {
 			RecieveResponeTest rrt=new RecieveResponeTest();
-			rrt.omdb();
-			rrt.trailerAPI();
+			 JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
+	            String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
+	            System.out.println();
+	            System.out.println(jsonPrettyPrintString);
 		}
 
 }
