@@ -20,26 +20,6 @@ public class ResultSorter {
 		this.qc=qc;
 	}
 	
-	
-	public void sortByGenre(){
-		
-	}
-	public void sortByYear(){
-			
-		}
-	public void sortByTitle(){
-		
-	}
-	public void sortByDirector(){
-		
-	}
-	public void sortByRating(){
-		
-	}
-	public void sortByLength(){
-		
-	}
-	
 	//Filter results from title and year after Rating and Genre.
 	public String filterSearch(String apiRes,String genre,String rating){
 		Double rate;
@@ -53,7 +33,7 @@ public class ResultSorter {
 		
 		MovieArray movieArray;
 		ArrayList<Movie> movieList=new ArrayList<Movie>();
-		System.out.println("Genre:"+genre+" Rating:"+rating);
+		
 		movieArray = gson.fromJson(apiRes, MovieArray.class);
 		
 		for(int i=0;i<movieArray.getMovie().length;i++){

@@ -6,7 +6,7 @@ package webserver;
  */
 public class QueryController {
 
-	private APIConnector apiC=new APIConnector();
+	private APIConnector apiC=new APIConnector(this);
 	private ResultSorter rs=new ResultSorter(this);
 	private QueryConverter qc=new QueryConverter();
 	
@@ -23,33 +23,31 @@ public class QueryController {
 		
 		
 		String apiResponse=apiC.getSearch(array[4]);
+		if(apiResponse==null){
+			return null;
+		}else{
 		
 		return rs.filterSearch(apiResponse, array[1], array[3]);	//Sortera efter genre och rating.
 	}
-	public String sort(String query){
-			
-			
-			return null;
-		}
+	}
+	
 	//Hämta full info för en film när man har full titel. 
 	public String info(String query){
-		System.out.println(query);
 		
 		return apiC.getInfo(qc.info(query));
 	}
 	
-	public String trailer(String query){
-		apiC.getTrailer(query);
-		
-		return null;
+	public String trailer(String query){		
+		return apiC.getTrailer(qc.cleanTrailerString(query));
 	}
+	
 	    
 	public static void main(String [] args){
 		QueryController cont=new QueryController();
-	//	cont.search("s=Harry+Potter&g=Drama&y=&r=8");
+//		cont.search("s=Harry+Potter&g=Drama&y=&r=8");
 	//	cont.search("s=Harry+Potter&g=Family&y=&r=");
 	//	cont.search("s=Harry+Potter&g=&y=&r=8");
-		cont.trailer("Hej");	//http://v.traileraddict.com/query (query=trailerID
+//		cont.trailer("Hej");	//http://v.traileraddict.com/query (query=trailerID
 	}
 	    
 	    

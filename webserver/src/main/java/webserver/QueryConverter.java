@@ -8,8 +8,10 @@ package webserver;
  */
 public class QueryConverter {
 	
-	private APIConnector apiC=new APIConnector();
+	
 	private String badChars[]= {" ","_","^","<",">","{","}","[","]","~"};		//Array med dåliga tecken som ska sorteras bort.
+	
+	
 
 	//Sökning för Titel,Genre,År,Rating ex:Drama, 80-90, 10, Title - välj field namn.search/s=title&g=genre&y=year&r=rating
 	//ApiConnector tar endast emot Title och Year.
@@ -28,8 +30,8 @@ public class QueryConverter {
 		rating=query.substring(year.length()+1);
 		
 		//Rensa upp input.
-		title=cleanString(title);
-		year=cleanString(year);
+		title=cleanMovieString(title);
+		year=cleanMovieString(year);
 				
 		apiSearch=title+"&"+year;
 		
@@ -50,12 +52,47 @@ public class QueryConverter {
 		return field=field.substring(2, field.length());
 	}
 	
-	public String cleanString(String string){
+	public String cleanMovieString(String string){
+		
 		for(int i=0;i<badChars.length;i++){
 			if(string.contains(badChars[i])){
 				string=string.replace(badChars[i],"+");	
 			}
 			}
+
+		return string;
+	}
+	public String cleanTrailerString(String string){
+		
+		string=string.toLowerCase();
+		String [] badWords= {"the","and","of"};
+		
+		for(int i=0;i<badChars.length;i++){
+			if(string.contains(badChars[i])){
+				string=string.replace(badChars[i],"-");	
+			}
+			}
+	
+		for(int i=0;i<badWords.length;i++){
+			if(string.contains(badWords[i])){
+				string=string.replace(badWords[i],"");	
+			}
+			}
+		
+		for(int i=0;i<string.length();i++){
+			if( string.charAt(i)=='-' && string.charAt(i+1)=='-'){
+				StringBuilder fixedString = new StringBuilder(string);
+				fixedString.deleteCharAt(i);
+				string=fixedString.toString();
+				i--;
+			}
+			}
+		StringBuilder fixedString = new StringBuilder(string);
+		if(fixedString.charAt(0)=='-'){
+			fixedString.deleteCharAt(0);
+			string=fixedString.toString();
+		}
+		
 		return string;
 	}
 	public String getField(String query,char field){
@@ -78,31 +115,18 @@ public class QueryConverter {
 	//Hämta all info för specifik film/titel (+trailer?!)
 	//returnera String med Json-formatering.
 	public String info(String query){		
-		query=cleanString(query);
-		System.out.println(query);
+		query=cleanMovieString(query);
 		return query;	//Senare svar från JSON metod.
 	}
-	//Sortera efter Genre,År,Titel osv.
-	//returnera String med Json-formatering.
-	public String sortBy(String query){
-		
-		
-		return null;	//Senare svar från JSON metod.
-	}
-	//Returnera Trailern efter titel
-	//returnera String med Json-formatering.
-	public String trailer(String query){
-		
-		
-		return null;	//Senare svar från JSON metod.
-	}
+	
 	public static void main(String[] args){
-		QueryConverter qc=new QueryConverter();
+		
 //		qc.info("harry");
 //		qc.info("harry p");
 //		qc.info("harry^p");
 	//	qc.search("s=Harry Potter and~the+Order+of+the+Phoenix&g=Drama&y=2007~~&r=8");
-		qc.search("s=Harry+Potter&g=Drama&y=&r=8");	//Om användaren utelämnat alternativ.
-		System.out.println("GETFIELD: "+qc.getValue("g=Drama"));
+	//	qc.search("s=Harry+Potter&g=Drama&y=&r=8");	//Om användaren utelämnat alternativ.
+		//System.out.println("CleanTrailerString:"+qc.cleanTrailerString("Harry Potter and the Order of the Phoenix")+"$");
+	//	System.out.println("GETFIELD: "+qc.getValue("g=Drama"));
 	}
 }

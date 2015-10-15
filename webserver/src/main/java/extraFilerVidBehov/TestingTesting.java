@@ -1,4 +1,6 @@
-package webserver;
+package extraFilerVidBehov;
+
+import static spark.Spark.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,19 +13,25 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
 import com.google.gson.Gson;
 
-public class RecieveResponeTest {
+import webserver.Movie;
+import webserver.MovieArray;
+
+public class TestingTesting {
 	
-	//XML TILL JSON VARIABLER.
-		 public static int PRETTY_PRINT_INDENT_FACTOR = 4;
-		    public static String TEST_XML_STRING =
-		        "<?xml version=\"1.0\" ?><test attrib=\"moretest\">Turn this to JSON</test>";
-		public void omdb() {
+	 public static int PRETTY_PRINT_INDENT_FACTOR = 4;
+	    public static String TEST_XML_STRING =
+	        "<?xml version=\"1.0\" ?><test attrib=\"moretest\">Turn this to JSON</test>";
+	public static void main(String [] args){
+		get("/hello",(req, res) -> "Hello World");
+		
+		get("/bye",(req, res) -> "Bye World");
+		
+		get("/search/:name", "application/json",(request, res) ->{
 			
 			HttpClient httpclient = null;
 			HttpGet httpGet = null;
@@ -32,13 +40,13 @@ public class RecieveResponeTest {
 			HttpEntity entity = null;
 			InputStream data = null;
 			Reader reader = null;
-
+			Movie movie=null;
 			Gson gson = new Gson();
 
 			try {
 				// Create the client that will call the API
 				httpclient = HttpClients.createDefault();
-				httpGet = new HttpGet("http://localhost:4567/search/Buffy");
+				httpGet = new HttpGet("http://www.omdbapi.com/?t="+request.params(":name")+"&y=&plot=short&r=json");
 
 				// Call the API and verify that all went well
 				response = httpclient.execute(httpGet);
@@ -51,26 +59,41 @@ public class RecieveResponeTest {
 					try {
 						// Attempt to parse the data as JSON
 						reader = new InputStreamReader(data);
-						Movie movie = gson.fromJson(reader, Movie.class);
-
+						movie = gson.fromJson(reader, Movie.class);
+						System.out.println("********* HTTP-GET /Search/"+request.params(":name")+" **********");
 						System.out.println(
 								"Title: " + movie.getTitle() + ", Year: " + movie.getYear() + ",: " + movie.getActors());
 
 					} catch (Exception e) {
 						// Something didn't went well. No calls for us.
 						e.printStackTrace();
-						System.out.println("OMDB didn't respond in a good manner.");
+						System.out.println("Trailer API didn't respond in a good manner.");
+						
 					}
 				} else {
 					// Something didn't went well. No calls for us.
-					System.out.println("OMDB didn't respond in a good manner.");
+					System.out.println("Trailer API didn't respond in a good manner.");
+				
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-
-		public void trailerAPI() {
+	
+			res.status(200);
+			res.type("application/json");
+			gson.toJson(movie);
+			JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
+            String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
+            
+			return gson.toJson(movie);
+            
+           
+            	
+            
+		});
+		
+		
+		get("/array/:name", "application/json",(request, res) ->{
 			
 			HttpClient httpclient = null;
 			HttpGet httpGet = null;
@@ -79,13 +102,13 @@ public class RecieveResponeTest {
 			HttpEntity entity = null;
 			InputStream data = null;
 			Reader reader = null;
-
+			MovieArray movieArray=null;
 			Gson gson = new Gson();
 
 			try {
 				// Create the client that will call the API
 				httpclient = HttpClients.createDefault();
-				httpGet = new HttpGet("http://localhost:4567/array/harry");
+				httpGet = new HttpGet("http://www.omdbapi.com/?s="+request.params(":name")+"&y=&plot=short&r=json");
 
 				// Call the API and verify that all went well
 				response = httpclient.execute(httpGet);
@@ -98,13 +121,13 @@ public class RecieveResponeTest {
 					try {
 						// Attempt to parse the data as JSON
 						reader = new InputStreamReader(data);
-						Movie[] movieArray = gson.fromJson(reader, Movie.class);
-
-						for(int i=0;i<3;i++){
-							System.out.println(
-									
-									"Title: " + movieArray[i].getTitle() + ", Year: " + movieArray[i].getYear() + ",: " + movieArray[i].getActors());
-							}
+						movieArray = gson.fromJson(reader, MovieArray.class);
+						System.out.println("********** HTTP-GET /Array/"+request.params(":name")+" **********");
+						for(int i=0;i<movieArray.getMovie().length;i++){
+						System.out.println(
+								
+								"Title: " + movieArray.getMovie()[i].getTitle() + ", Year: " + movieArray.getMovie()[i].getYear() + ", Actors: " + movieArray.getMovie()[i].getActors());
+						}
 					} catch (Exception e) {
 						// Something didn't went well. No calls for us.
 						e.printStackTrace();
@@ -117,26 +140,15 @@ public class RecieveResponeTest {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			//TESTA XML till JSON:
-			
-			    try {
-		            JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
-		            String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
-		            System.out.println();
-		            System.out.println(jsonPrettyPrintString);
-		        } catch (JSONException je) {
-		            System.out.println(je.toString());
-		        }
-		   
-		}
-
-		public static void main(String[] args) throws IOException {
-			RecieveResponeTest rrt=new RecieveResponeTest();
-			 JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
-	            String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
-	            System.out.println();
-	            System.out.println(jsonPrettyPrintString);
-		}
+	
+			res.status(200);
+			res.type("application/json");
+		//	gson.toJson(movie);
+			JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
+            String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
+			return gson.toJson(movieArray);
+		});
+	}
+	
 
 }

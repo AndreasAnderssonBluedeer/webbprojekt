@@ -2,6 +2,7 @@ package webserver;
 
 public class Movie {
 	
+	private String trailer_link;
 	private String Title;
 	private String Year;
 	private String Rated;
@@ -26,6 +27,13 @@ public class Movie {
 	
 	public Movie(){
 		
+	}
+	
+	public void setTrailer(String trailer){
+		this.trailer_link=trailer;
+	}
+	public String getTrailer(){
+		return this.trailer_link;
 	}
 	//Movie
 	public void setTitle(String Title){
@@ -157,7 +165,11 @@ public class Movie {
 	}
 
 	public Double getimdbRating() {
+		if(imdbRating.equals("N/A")){
+			return 0.0;
+		}else{
 		return Double.parseDouble(this.imdbRating);
+		}
 	}
 
 	// imdbVotes
@@ -197,11 +209,3 @@ public class Movie {
 	}
 }
 
-/*{"Title":"Harry Potter and the Deathly Hallows: Part 2","Year":"2011","Rated":"PG-13",
- * "Released":"15 Jul 2011","Runtime":"130 min","Genre":"Adventure, Drama, Fantasy","Director":"David Yates",
- * "Writer":"Steve Kloves (screenplay), J.K. Rowling (novel)","Actors":"Ralph Fiennes, Michael Gambon, Alan Rickman, Daniel Radcliffe",
- * "Plot":"Harry, Ron and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
- * "Language":"English","Country":"USA, UK","Awards":"Nominated for 3 Oscars. Another 48 wins & 77 nominations.",
- * "Poster":"http://ia.media-imdb.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX300.jpg",
- * "Metascore":"87","imdbRating":"8.1","imdbVotes":"477,389","imdbID":"tt1201607","Type":"movie","Response":"True"}*/
- 

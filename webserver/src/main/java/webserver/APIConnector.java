@@ -24,21 +24,25 @@ import com.google.gson.Gson;
  *
  */
 public class APIConnector {
-
+	
+	private QueryController controller;
+	private HttpClient httpclient = null;
+	private HttpGet httpGet = null;
+	private HttpResponse response = null;
+	private StatusLine status = null;
+	private HttpEntity entity = null;
+	private InputStream data = null;
+	private Reader reader = null;
+	private Movie movie=null;
+	private Gson gson = new Gson();
+	
+	public APIConnector(QueryController controller){
+		this.controller=controller;
+	}
 	
 	//Hämta full info för en film
 	public String getInfo(String query){
-		
-		HttpClient httpclient = null;
-		HttpGet httpGet = null;
-		HttpResponse response = null;
-		StatusLine status = null;
-		HttpEntity entity = null;
-		InputStream data = null;
-		Reader reader = null;
-		Movie movie=null;
-		Gson gson = new Gson();
-		
+	
 		try {
 			// Create the client that will call the API
 			httpclient = HttpClients.createDefault();
@@ -55,45 +59,35 @@ public class APIConnector {
 				try {
 					// Attempt to parse the data as JSON
 					reader = new InputStreamReader(data);
-					movie = gson.fromJson(reader, Movie.class);
+					movie = gson.fromJson(reader, Movie.class);					
 					
-					System.out.println("********* HTTP-GET /info/"+query+" **********");
-					System.out.println("Title: " + movie.getTitle());
 
 				} catch (Exception e) {
 					// Something didn't went well. No calls for us.
 					e.printStackTrace();
 					System.out.println("OMDB API didn't respond in a good manner.");
-					return gson.toJson("OMDB API didn't respond in a good manner.");
-					
+							
 				}
 			} else {
 				// Something didn't went well. No calls for us.
 				System.out.println("OMDB API didn't respond in a good manner.");
-				return gson.toJson("OMDB API didn't respond in a good manner.");
-			
+					
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return gson.toJson(movie);
-        
+		//måste in i queryController till QueryConverter först.!!
+		Movie movieTemp;
+		movieTemp = gson.fromJson(controller.trailer(movie.getTitle()), Movie.class);
 		
+		movie.setTrailer(movieTemp.getTrailer());
+		return gson.toJson(movie);		
 		
 	}
 	
 	public String getSearch(String query){
-		
-		HttpClient httpclient = null;
-		HttpGet httpGet = null;
-		HttpResponse response = null;
-		StatusLine status = null;
-		HttpEntity entity = null;
-		InputStream data = null;
-		Reader reader = null;
+				
 		MovieArray movie=null;
-		Gson gson = new Gson();
 		
 		try {
 			// Create the client that will call the API
@@ -111,96 +105,68 @@ public class APIConnector {
 				try {
 					// Attempt to parse the data as JSON
 					reader = new InputStreamReader(data);
-					movie = gson.fromJson(reader, MovieArray.class);
-					
-					System.out.println("********* HTTP-GET /Search/"+query+" **********");
-					for(int i=0;i<movie.getMovie().length;i++){
-						System.out.println(
-								
-								"Title: " + movie.getMovie()[i].getTitle() + ", Year: " + movie.getMovie()[i].getYear() + ", Actors: " + movie.getMovie()[i].getActors());
-						}
+					movie = gson.fromJson(reader, MovieArray.class);					
+				
 
 				} catch (Exception e) {
 					// Something didn't went well. No calls for us.
 					e.printStackTrace();
-					System.out.println("OMDB API didn't respond in a good manner.");
-					return gson.toJson("OMDB API didn't respond in a good manner.");
-					
+					System.out.println("OMDB API didn't respond or couldn't find any result");
+									
 				}
 			} else {
 				// Something didn't went well. No calls for us.
-				System.out.println("OMDB API didn't respond in a good manner.");
-				return gson.toJson("OMDB API didn't respond in a good manner.");
-			
+				System.out.println("OMDB API didn't respond or couldn't find any result");
+					
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return gson.toJson(movie);
-        
-		
-		
+		if(movie.getMovie()==null){
+			return null;
+		}
+		return gson.toJson(movie);	
 	}
 	
 	
 	//Hämtar och returnerar Trailern.
-	public void getTrailer(String query){
-		
-		HttpClient httpclient = null;
-		HttpGet httpGet = null;
-		HttpResponse response = null;
-		StatusLine status = null;
-		HttpEntity entity = null;
-		InputStream data = null;
+	public String getTrailer(String query) {
+
+		Trailer t = new Trailer();
 		try {
 			// Create the client that will call the API
 			httpclient = HttpClients.createDefault();
-			httpGet = new HttpGet("http://simpleapi.traileraddict.com/The-Avengers/trailer");
+			httpGet = new HttpGet("http://simpleapi.traileraddict.com/" + query + "/trailer");
 
 			// Call the API and verify that all went well
 			response = httpclient.execute(httpGet);
 			status = response.getStatusLine();
 			if (status.getStatusCode() == 200) {
 
-				System.out.println("********* OK"+" **********");
 				// All went well. Let's fetch the data
 				entity = response.getEntity();
 				data = entity.getContent();
-			
+
 				try {
 					// Attempt to parse the data as JSON
-					
 					JAXBContext jc = JAXBContext.newInstance(XmlClass.class);
-					
 					XmlClass trailers = (XmlClass) jc.createUnmarshaller().unmarshal(data);
-					
-				
-					Trailer t=trailers.getTrailer();
-					System.out.println(t.toString());
-
+					t = trailers.getTrailer();
 				} catch (Exception e) {
 					// Something didn't went well. No calls for us.
-					e.printStackTrace();
-					System.out.println("TrailerAddict API didn't respond in a good manner.");			
-					
+					System.out.println(
+							"************TrailerAddict API didn't respond or couldn't find the trailer.************");
 				}
 			} else {
 				// Something didn't went well. No calls for us.
-				System.out.println("TrailerAddict API didn't respond in a good manner.");
-				
-			
+				System.out.println(
+						"************TrailerAddict API didn't respond or couldn't find the trailer.************");
 			}
 		} catch (IOException e) {
+			System.out.println("************Something went wrong.************");
 			e.printStackTrace();
-		}	   	
-	
-        
-	}	
-	
-	
-	
-	
-	
-	
+		}
+		return gson.toJson(t);
+	}
+
 }
