@@ -1,9 +1,7 @@
 
 function myFunction() {
 
-		$.getJSON('http://localhost:4567/info/harry', function(jd) {
-		console.log(jd);	
-		})
+		
 
 		var rate= $("#test6").val();
 		var year= $("#test4").val();
