@@ -2,22 +2,27 @@ package webserver;
 
 
 /**
- * Convertera Query till sina sökfält.
- * @author Andreas
+ * QueryConverter converters or improves the search-queries. It separates title, genre,year and rating from movie search,
+ * replaces " " with "+" to make a searchable link to the OMDB API etc. All information that needs to be handled from the query 
+ * will be done in this class.
+ * @author Andreas Andersson & David Isberg -Systemutveckling HT-15
  *
  */
 public class QueryConverter {
 	
 	
-	private String badChars[]= {" ","_","^","<",">","{","}","[","]","~"};		//Array med dåliga tecken som ska sorteras bort.
+	private String badChars[]= {" ","_","^","<",">","{","}","[","]","~"};		//Array with bad Characters
 	
 	
 
-	//Sökning för Titel,Genre,År,Rating ex:Drama, 80-90, 10, Title - välj field namn.search/s=title&g=genre&y=year&r=rating
-	//ApiConnector tar endast emot Title och Year.
-	//returnera String med Json-formatering.
+	/**
+	 * Creates and returns a String[] from a Movie-Search query to make it possible to filter and search with
+	 * title,Genre,Year and Rating. Splits the Query, and then exchange/removes bad chars.  
+	 * QUERY STRUCTURE: search/s=title&g=genre&y=year&r=rating
+	 * @param query -search query
+	 * @return String[]
+	 */
 	public String[] search(String query){
-		// search/s=title&g=genre&y=year&r=rating query: s=title&g=genre&y=year&r=rating
 		
 		String [] array= new String[5];
 		String title = null,genre=null,year=null,rating=null,apiSearch=null;
@@ -29,7 +34,7 @@ public class QueryConverter {
 		year=getField(query,'r');		
 		rating=query.substring(year.length()+1);
 		
-		//Rensa upp input.
+		//Clean Strings
 		title=cleanMovieString(title);
 		year=cleanMovieString(year);
 				
@@ -43,15 +48,25 @@ public class QueryConverter {
 		
 		
 		
-		return array;	//Senare svar från JSON metod.
+		return array;
 	}
 	
-	//Rensa ut  t.ex "r=" från r=rating.
+	/**
+	 * Separates Field from Value in Query parameters. Example: t=title -return title.
+	 * @param field -string to be separated
+	 * @return String
+	 */
 	public String cleanField(String field){
 
 		return field=field.substring(2, field.length());
 	}
 	
+	/**
+	 * Cleans the Movie-Search Query String from Bad chars.
+	 * Returns the cleans String.
+	 * @param string - search query to clean
+	 * @return String
+	 */
 	public String cleanMovieString(String string){
 		
 		for(int i=0;i<badChars.length;i++){
@@ -62,23 +77,32 @@ public class QueryConverter {
 
 		return string;
 	}
+	
+	/**
+	 * Cleans Trailer query String. More complex than MovieSearch since
+	 * it doesnt use "The,And,Of" etc in API search for specific Trailer. 
+	 * Returns the Cleaned String
+	 * @param string -Trailer query String to be Cleaned
+	 * @return String 
+	 */
 	public String cleanTrailerString(String string){
 		
 		string=string.toLowerCase();
 		String [] badWords= {"the","and","of"};
 		
+		//Replace bad Chars
 		for(int i=0;i<badChars.length;i++){
 			if(string.contains(badChars[i])){
 				string=string.replace(badChars[i],"-");	
 			}
 			}
-	
+		//Replace bad Words
 		for(int i=0;i<badWords.length;i++){
 			if(string.contains(badWords[i])){
 				string=string.replace(badWords[i],"");	
 			}
 			}
-		
+			//Remove "--"
 		for(int i=0;i<string.length();i++){
 			if( string.charAt(i)=='-' && string.charAt(i+1)=='-'){
 				StringBuilder fixedString = new StringBuilder(string);
@@ -87,6 +111,7 @@ public class QueryConverter {
 				i--;
 			}
 			}
+		//If first char is "-" , Remove it.
 		StringBuilder fixedString = new StringBuilder(string);
 		if(fixedString.charAt(0)=='-'){
 			fixedString.deleteCharAt(0);
@@ -95,38 +120,44 @@ public class QueryConverter {
 		
 		return string;
 	}
+	
+	/**
+	 * Separates the diffrent MovieSearch parameters. Example:From: t=title&y=year To:t=title 
+	 * Returns the Separate Parameter.
+	 * @param query - Movie Search Query to Separate
+	 * @param field -Field identifier, EX:'t' (t=title)
+	 * @return String
+	 */
 	public String getField(String query,char field){
 		String answer=null;
 		
 		for(int i=0;i<query.length();i++){
 			if(query.charAt(i)=='&' && query.charAt(i+1)==field && query.charAt(i+2)=='='){
-				answer=query.substring(0, i);	//Vi har hittat vårt title Field&Value.
-				i=query.length();	//Bryt loopen.
+				answer=query.substring(0, i);	
+				i=query.length();	//Break the Loop.
 			}
 		}		
 		return answer;
 	}
 	
+	/**
+	 * Returns the Value of a Field. EX t=title , return "title"
+	 * @param field -String field to get value from.
+	 * @return String
+	 */
 	public String getValue(String field){		
 		field=field.substring(2,field.length());		
 		return field;
 	}
 	
-	//Hämta all info för specifik film/titel (+trailer?!)
-	//returnera String med Json-formatering.
+	/**
+	 * Calls for cleaning of MovieString Query and returns it. 
+	 * @param query -movie search
+	 * @return String 
+	 */
 	public String info(String query){		
 		query=cleanMovieString(query);
-		return query;	//Senare svar från JSON metod.
+		return query;	
 	}
 	
-	public static void main(String[] args){
-		
-//		qc.info("harry");
-//		qc.info("harry p");
-//		qc.info("harry^p");
-	//	qc.search("s=Harry Potter and~the+Order+of+the+Phoenix&g=Drama&y=2007~~&r=8");
-	//	qc.search("s=Harry+Potter&g=Drama&y=&r=8");	//Om användaren utelämnat alternativ.
-		//System.out.println("CleanTrailerString:"+qc.cleanTrailerString("Harry Potter and the Order of the Phoenix")+"$");
-	//	System.out.println("GETFIELD: "+qc.getValue("g=Drama"));
-	}
 }

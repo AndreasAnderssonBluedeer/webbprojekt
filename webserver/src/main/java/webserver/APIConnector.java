@@ -19,8 +19,9 @@ import org.json.XML;
 import com.google.gson.Gson;
 
 /**
- * kopplar upp sig mot OMDB och TrailerAddict APIerna och returnerar resultaten.
- * @author Andreas
+ * Connector, XML/JSON Converter for OMDB API and TRAILERADDICT API, Returns finished results as
+ * JSON. Handles all API communication.
+ * @author Andreas Andersson & David Isberg -Systemutveckling HT-15
  *
  */
 public class APIConnector {
@@ -40,82 +41,93 @@ public class APIConnector {
 		this.controller=controller;
 	}
 	
-	//Hämta full info för en film
+	/**
+	 * Fetches and Returns full information + trailer for a specific movie as JSON.
+	 * Uses OMDB API.
+	 * @param query -Movie title to Return
+	 * @return String
+	 */
 	public String getInfo(String query){
 	
 		try {
-			// Create the client that will call the API
+			
 			httpclient = HttpClients.createDefault();
 			httpGet = new HttpGet("http://www.omdbapi.com/?t="+query+"&y=&plot=full&r=json");
 
-			// Call the API and verify that all went well
+		
 			response = httpclient.execute(httpGet);
 			status = response.getStatusLine();
 			if (status.getStatusCode() == 200) {
-				// All went well. Let's fetch the data
+				
 				entity = response.getEntity();
 				data = entity.getContent();
 
 				try {
-					// Attempt to parse the data as JSON
+					//Convert to Java Object.
 					reader = new InputStreamReader(data);
 					movie = gson.fromJson(reader, Movie.class);					
 					
 
 				} catch (Exception e) {
-					// Something didn't went well. No calls for us.
+					// Something didn't went well.
 					e.printStackTrace();
 					System.out.println("OMDB API didn't respond in a good manner.");
 							
 				}
 			} else {
-				// Something didn't went well. No calls for us.
+				// Something didn't went well.
 				System.out.println("OMDB API didn't respond in a good manner.");
 					
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//måste in i queryController till QueryConverter först.!!
+		//Fetch Trailer
 		Movie movieTemp;
 		movieTemp = gson.fromJson(controller.trailer(movie.getTitle()), Movie.class);
-		
+		//Return as JSON
 		movie.setTrailer(movieTemp.getTrailer());
 		return gson.toJson(movie);		
 		
 	}
 	
+	/**
+	 * Fetches MovieResults and Returns them as JSON.
+	 * Uses OMDB API.
+	 * @param query -Search parameters.
+	 * @return String
+	 */
 	public String getSearch(String query){
 				
 		MovieArray movie=null;
 		
 		try {
-			// Create the client that will call the API
+	
 			httpclient = HttpClients.createDefault();
 			httpGet = new HttpGet("http://www.omdbapi.com/?"+query+"&plot=full&r=json");
 
-			// Call the API and verify that all went well
+			
 			response = httpclient.execute(httpGet);
 			status = response.getStatusLine();
 			if (status.getStatusCode() == 200) {
-				// All went well. Let's fetch the data
+			
 				entity = response.getEntity();
 				data = entity.getContent();
 
 				try {
-					// Attempt to parse the data as JSON
+					//Convert to Java Object.
 					reader = new InputStreamReader(data);
 					movie = gson.fromJson(reader, MovieArray.class);					
 				
 
 				} catch (Exception e) {
-					// Something didn't went well. No calls for us.
+					// Something didn't went well.
 					e.printStackTrace();
 					System.out.println("OMDB API didn't respond or couldn't find any result");
 									
 				}
 			} else {
-				// Something didn't went well. No calls for us.
+				// Something didn't went well. 
 				System.out.println("OMDB API didn't respond or couldn't find any result");
 					
 			}
@@ -129,36 +141,41 @@ public class APIConnector {
 	}
 	
 	
-	//Hämtar och returnerar Trailern.
+	/**
+	 * Fetches and returns a specific Trailer as a JSON String.
+	 * Uses TRAILERADDICT API. Converts from XML to JSON.
+	 * @param query -TrailerTitle
+	 * @return String
+	 */
 	public String getTrailer(String query) {
 
 		Trailer t = new Trailer();
 		try {
-			// Create the client that will call the API
+		
 			httpclient = HttpClients.createDefault();
 			httpGet = new HttpGet("http://simpleapi.traileraddict.com/" + query + "/trailer");
 
-			// Call the API and verify that all went well
+			
 			response = httpclient.execute(httpGet);
 			status = response.getStatusLine();
 			if (status.getStatusCode() == 200) {
 
-				// All went well. Let's fetch the data
+			
 				entity = response.getEntity();
 				data = entity.getContent();
 
 				try {
-					// Attempt to parse the data as JSON
+					//Convert from XML to JAVA
 					JAXBContext jc = JAXBContext.newInstance(XmlClass.class);
 					XmlClass trailers = (XmlClass) jc.createUnmarshaller().unmarshal(data);
 					t = trailers.getTrailer();
 				} catch (Exception e) {
-					// Something didn't went well. No calls for us.
+					// Something didn't went well.
 					System.out.println(
 							"************TrailerAddict API didn't respond or couldn't find the trailer.************");
 				}
 			} else {
-				// Something didn't went well. No calls for us.
+				// Something didn't went well.
 				System.out.println(
 						"************TrailerAddict API didn't respond or couldn't find the trailer.************");
 			}

@@ -1,5 +1,16 @@
 package webserver;
 
+/**
+ * This class is mainly used for JSON to Java converting of a movie-search response. 
+ * a Bunch of variables for Title,Genre,Rating ETC.  OBS:DO NOT CHANGE VARIABLE NAMES!!! JSON CONVERTION WON'T WORK!
+ * 
+ *  **Every InstanceVariable has 2 methods, 1 set() & 1 get(). Methodstructure: set+variableName(String x), get+variableName()
+ *  EX: setTitle(String title), getTitle()
+ *@author Andreas Andersson & David Isberg -Systemutveckling HT-15
+ *
+ */
+
+
 public class Movie {
 	
 	private String trailer_link;
@@ -25,10 +36,8 @@ public class Movie {
 	private String Response;
 	
 	
-	public Movie(){
-		
-	}
 	
+	//Trailer
 	public void setTrailer(String trailer){
 		this.trailer_link=trailer;
 	}
