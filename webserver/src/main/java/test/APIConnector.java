@@ -1,4 +1,4 @@
-package webserver;
+package test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +13,9 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONObject;
+import org.json.XML;
+
 import com.google.gson.Gson;
 
 /**
@@ -23,6 +26,7 @@ import com.google.gson.Gson;
  */
 public class APIConnector {
 	
+	private QueryController controller;
 	private HttpClient httpclient = null;
 	private HttpGet httpGet = null;
 	private HttpResponse response = null;
@@ -33,7 +37,9 @@ public class APIConnector {
 	private Movie movie=null;
 	private Gson gson = new Gson();
 	
-	
+	public APIConnector(QueryController controller){
+		this.controller=controller;
+	}
 	
 	/**
 	 * Fetches and Returns full information + trailer for a specific movie as JSON.

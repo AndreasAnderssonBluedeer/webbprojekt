@@ -1,5 +1,6 @@
-package webserver;
+package test;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 public class ResultSorter {
 	
 	private QueryController qc;
+	private InputStreamReader reader;
 	private Gson gson = new Gson();
 	
 	/**

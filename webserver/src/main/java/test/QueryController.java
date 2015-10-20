@@ -1,4 +1,4 @@
-package webserver;
+package test;
 
 import com.google.gson.Gson;
 
@@ -10,10 +10,10 @@ import com.google.gson.Gson;
  */
 public class QueryController {
 
-	private APIConnector apiC=new APIConnector();
+	private APIConnector apiC=new APIConnector(this);
 	private ResultSorter rs=new ResultSorter(this);
 	private QueryConverter qc=new QueryConverter();
-	private Gson gson= new Gson();
+	
 	
 	
 	    /**
@@ -58,7 +58,7 @@ public class QueryController {
 		return gson.toJson(movie);		
 		 * 
 		 */
-	
+		Gson gson=new Gson();
 		Movie movie=apiC.getInfo(qc.info(query));
 		Movie movieTemp;
 		movieTemp = gson.fromJson(trailerByImdb(movie.getimdbID()), Movie.class);
@@ -84,7 +84,7 @@ public class QueryController {
 	 * @return String
 	 */
 	public String trailerByImdb(String query){	
-		
+		Gson gson=new Gson();
 		query=apiC.getTrailerTitle(qc.cleanImdbID(query));
 		if(query==null){
 			
@@ -98,8 +98,15 @@ public class QueryController {
 	public String trailerByTitle(String query){		
 	//	return apiC.getTrailer(qc.cleanTrailerString(query));
 		String[] array=qc.cleanTrailerString(query);
+		/* array pos:
+		 * 0= the entire title to lowchars and "space"="-"
+		 * 1= as 0 but without "the"
+		 * 2= as 1 but without "and"
+		 * 3= as 2 but without "of"
+		 */
+		Movie movieTemp;
 		String str=null;
-
+		Gson gson=new Gson();
 		//"http://simpleapi.traileraddict.com/" + query + "/trailer"
 		for(int i=0;i<array.length;i++){
 			System.out.println("TESTING:"+array[i]);
@@ -137,7 +144,7 @@ public class QueryController {
 	}
 	public String searchInfo(String query){
 		
-		
+		Gson gson=new Gson();
 		Movie movie=apiC.getInfo(qc.info(query));
 
 		return gson.toJson(movie);		

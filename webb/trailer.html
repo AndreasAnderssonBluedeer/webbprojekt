@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	
+	<head>
+		<link rel="icon" type="image/gif" href="pika.png" />
+  		<title>Trailer</title>
+ 		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  									<!-- BOOTSTRAP-->
+ 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<script src="script.js"></script>
+  		<script src="path/to/the/flowplayer-3.2.13.min.js"></script>
+
+  		  <link rel='stylesheet' href='style.css'/> 
+    </head>
+	
+	<body onload = configTrailer()>
+
+	<div id="header">
+
+		<div class="headlogo">
+			<a href="searchtest.html"><img id ="bild" src="moogle2.jpg" alt="Logo">
+			</a>
+		</div>
+
+		<div class="nav">
+			<div class="navcontainer">
+				<div class="col-xs-4">
+					<input type="text" class="form-control" id="title" placeholder="Title..">
+				</div>
+
+				<div class="col-xs-2">
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" id="test2" type="button" data-toggle="dropdown">Genre
+							<span class="caret"></span></button>
+						<ul class="dropdown-menu" id="test">
+							<li><a href="#">Drama</a></li>
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Adventure</a></li>
+							<li><a href="#">Sci-Fi</a></li>
+							<li><a href="#">Fantasy</a></li>
+							<li><a href="#">Mystery</a></li>
+							<li><a href="#">Animation</a></li>
+							<li><a href="#">Comedy</a></li>
+							<li><a href="#">Horror</a></li>
+							<li><a href="#">Thriller</a></li>
+							<li><a href="#">Sport</a></li>
+							<li><a href="#">History</a></li>
+							<li><a href="#">Documentary</a></li>
+							<li><a href="#">Musical</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-xs-2">
+					<div class="dropdown">
+						<button type="button" class="btn btn-primary dropdown-toggle" id="test4" data-toggle="dropdown">Year <span class="caret"></span></button>
+						<ul class="dropdown-menu scrollable-menu" id="test3">
+							<li><a href="#">2015</a></li>
+							<li><a href="#">2014</a></li>
+							<li><a href="#">2013</a></li>
+							<li><a href="#">2012</a></li>
+							<li><a href="#">2011</a></li>
+							<li><a href="#">2010</a></li>
+							<li><a href="#">2009</a></li>
+							<li><a href="#">2008</a></li>
+							<li><a href="#">2007</a></li>
+							<li><a href="#">2006</a></li>
+							<li><a href="#">2005</a></li>
+							<li><a href="#">2004</a></li>
+							<li><a href="#">2003</a></li>
+							<li><a href="#">2002</a></li>
+							<li><a href="#">2001</a></li>
+							<li><a href="#">2000</a></li>
+							<li><a href="#">1999</a></li>
+							<li><a href="#">1998</a></li>
+							<li><a href="#">1997</a></li>
+							<li><a href="#">1996</a></li>
+							<li><a href="#">1995</a></li>
+							<li><a href="#">1994</a></li>
+							<li><a href="#">1993</a></li>
+							<li><a href="#">1992</a></li>
+							<li><a href="#">1991</a></li>
+							<li><a href="#">1990</a></li>
+							<li><a href="#">1989</a></li>
+							<li><a href="#">1988</a></li>
+							<li><a href="#">1987</a></li>
+							<li><a href="#">1986</a></li>
+							<li><a href="#">1985</a></li>
+							<li><a href="#">1984</a></li>
+							<li><a href="#">1983</a></li>
+							<li><a href="#">1982</a></li>
+							<li><a href="#">1981</a></li>
+							<li><a href="#">1980</a></li>
+							<li>Bara sök efter en titel!</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-xs-2">
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" id="test6" type="button" data-toggle="dropdown">Rating
+							<span class="caret"></span></button>
+						<ul class="dropdown-menu" id="test5">
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">6</a></li>
+							<li><a href="#">7</a></li>
+							<li><a href="#">8</a></li>
+							<li><a href="#">9</a></li>
+							<li><a href="#">10</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-xs-2">
+					<button type="button" class="btn btn-primary"
+							onclick="myFunction()">
+						Search!
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="main">
+
+	<div class="mainfield">
+
+<div>
+	<iframe src="" id="movieframe"  width="70%" height="450" frameBorder="0"></iframe>
+</div>
+
+<p>
+<div class = "movie-info"> 
+
+		<div class="well well-lg">
+        <h5 id = "movie-title">Movie Title 
+        </h5> 	
+        <h6 id = "plot">Vad filmen handlar om
+        </h6>
+
+        <h5 id = "genre">Genre 
+        </h5> 	
+        <h6 id = "genre-name">Genre
+        </h6>
+
+
+        <h5 id = "language">Language 
+        </h5> 	
+        <h6 id = "language-name">Language
+        </h6>
+
+
+        <h5 id = "movie-series">Movie 
+        </h5> 	
+        <h6 id = "is-a-movie">True/false
+        </h6>
+
+
+        <h5 id = "rating">IMDB-Rating 
+        </h5> 	
+        <h6 id = "rating-number">Rating
+        </h6>
+
+
+        <h5 id = "votes">IMDB-Votes 
+        </h5> 	
+        <h6 id = "votes-number">Votes
+        </h6>
+
+
+        <h5 id = "imdb-id">IMDB-ID 
+        </h5> 	
+        <h6 id = "imdb-id-name">IMDB-ID
+        </h6>
+
+        <h5 id = "released">Released 
+        </h5> 	
+        <h6 id = "released-date">År som filmen släpptes
+        </h6>
+
+        <h5 id = "director">Director 
+        </h5> 	
+        <h6 id = "director-name">Herr Gubbstrutt
+        </h6>
+
+        <h5 id = "writer">Writer 
+        </h5> 	
+        <h6 id = "writer-name">Konstapel Snarf
+        </h6>
+
+        <h5 id = "actors">Actors 
+        </h5> 	
+        <h6 id = "actor-name">Medverkande skådespelare
+        </h6>
+
+        <h5 id = "runtime">Runtime 
+        </h5> 	
+        <h6 id = "runtime-length">How long is the movie
+        </h6>
+
+        <h5 id = "rated-pg">Rated 
+        </h5> 	
+        <h6 id = "rated-pg-name">Rated
+        </h6>
+
+        <h5 id = "country">Country 
+        </h5> 	
+        <h6 id = "country-name">Country
+        </h6>
+
+        <h5 id = "awards">Awards 
+        </h5> 	
+        <h6 id = "award-name">Awards
+        </h6>
+
+    </div>
+    </div>
+</div>
+</p>
+	</div>
+	</body>
+
+	<div id="footer">
+
+		<p>Footer</p>
+		</div>
+
+</html>
